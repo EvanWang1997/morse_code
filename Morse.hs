@@ -1,8 +1,29 @@
 
 import Data.Text (Text)
+import MorseBST()
+import MorseBST(morseTree)
+import MorseBST(morseToEng)
 
--- Takes in the file specified from the user, outputs the original an array containing
+
+-- Takes in the file specified from the user, returns the contents of the file
 import System.IO
+
+
+-- Enter fileToEng along with the file name in quotations to return the english unparsed
+-- message from the original morse code
+-- Takes in a filepath, and returns the corresponding string in english
+fileToEng :: String -> IO String
+fileToEng s =
+    do 
+        morse <- textToString s
+        let 
+            eng = morseToMessage morse
+            unparsed = reverse (messageTrim (reverse eng))
+        return unparsed 
+            
+
+-- Takes in a file specified by the user, returns the english translation of the morse code
+-- rawMessage :: String -> String
 textToString :: String -> IO String
 textToString s =
     do 
@@ -10,11 +31,30 @@ textToString s =
         contents <- hGetContents handle
         return contents
 
+
 -- Function for converting morse string to Text String
--- TODO
+morseToMessage :: String -> String
+morseToMessage "" = ""
+morseToMessage (h:t)
+    | h == '/' = morseToMessage t
+    | h == '|' = ". " ++ morseToMessage t
+    | otherwise = morseToEng (getMorseChar (h:t)) morseTree : morseToMessage((removeFirstMorse (h:t)))
 
--- Takes in english message of unknown repetition, and returns a single length of it !!
+-- Helper Function for converting getting first set of morse characters
+getMorseChar :: [Char] -> [Char]
+getMorseChar "" = ""
+getMorseChar (h:t)
+    | (elem h ".-") = h:getMorseChar t
+    | otherwise = []
 
+-- Helper Function for removing first morse character in a list
+removeFirstMorse "" = ""
+removeFirstMorse (h:t)
+    | (elem h ".-") = removeFirstMorse t
+    | otherwise = (h:t)
+
+
+-- Takes in english message of unknown repetition, and returns a single length of it
 messageTrim :: String -> String
 messageTrim s = findPattern s []
 
