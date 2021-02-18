@@ -110,7 +110,7 @@ instance (Eq v,Eq w) => Eq (DicTrie v w) where
    t1 == t2 = tolist t1 == tolist t2
 
 insert str (TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o p q r s t u v w x y z)
-     | str == [] = TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o p q r s t u v w x y z
+     | null str = TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o p q r s t u v w x y z
      | head str == '0' =
           if num0 == Empty then TrieNode val word
                (insert (tail str) (TrieNode '0' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
@@ -188,27 +188,188 @@ insert str (TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 
           else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9
                (insert (tail str) a)
                b c d e f g h i j k l m n o p q r s t u v w x y z
+     | head str == 'b' =
+          if b == Empty then TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a
+               (insert (tail str) (TrieNode 'b' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
+               c d e f g h i j k l m n o p q r s t u v w x y z
+          else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a
+               (insert (tail str) b)
+               c d e f g h i j k l m n o p q r s t u v w x y z
+     | head str == 'c' =
+          if c == Empty then TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b
+               (insert (tail str) (TrieNode 'c' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
+               d e f g h i j k l m n o p q r s t u v w x y z
+          else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b
+               (insert (tail str) c)
+               d e f g h i j k l m n o p q r s t u v w x y z
+     | head str == 'd' =
+          if d == Empty then TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c
+               (insert (tail str) (TrieNode 'd' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
+               e f g h i j k l m n o p q r s t u v w x y z
+          else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c
+               (insert (tail str) d)
+               e f g h i j k l m n o p q r s t u v w x y z
+     | head str == 'e' =
+          if e == Empty then TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d
+               (insert (tail str) (TrieNode 'e' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
+               f g h i j k l m n o p q r s t u v w x y z
+          else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d
+               (insert (tail str) e)
+               f g h i j k l m n o p q r s t u v w x y z
+     | head str == 'f' =
+          if f == Empty then TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e
+               (insert (tail str) (TrieNode 'f' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
+               g h i j k l m n o p q r s t u v w x y z
+          else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e
+               (insert (tail str) f)
+               g h i j k l m n o p q r s t u v w x y z
+     | head str == 'g' =
+          if g == Empty then TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f
+               (insert (tail str) (TrieNode 'g' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
+               h i j k l m n o p q r s t u v w x y z
+          else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f
+               (insert (tail str) g)
+               h i j k l m n o p q r s t u v w x y z
+     | head str == 'h' =
+          if h == Empty then TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g
+               (insert (tail str) (TrieNode 'h' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
+               i j k l m n o p q r s t u v w x y z
+          else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g
+               (insert (tail str) h)
+               i j k l m n o p q r s t u v w x y z
+     | head str == 'i' =
+          if i == Empty then TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h
+               (insert (tail str) (TrieNode 'i' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
+               j k l m n o p q r s t u v w x y z
+          else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h
+               (insert (tail str) i)
+               j k l m n o p q r s t u v w x y z
+     | head str == 'j' =
+          if j == Empty then TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i
+               (insert (tail str) (TrieNode 'j' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
+               k l m n o p q r s t u v w x y z
+          else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i
+               (insert (tail str) j)
+               k l m n o p q r s t u v w x y z
+     | head str == 'k' =
+          if k == Empty then TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j
+               (insert (tail str) (TrieNode 'k' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
+               l m n o p q r s t u v w x y z
+          else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j
+               (insert (tail str) k)
+               l m n o p q r s t u v w x y z
+     | head str == 'l' =
+          if l == Empty then TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k
+               (insert (tail str) (TrieNode 'l' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
+               m n o p q r s t u v w x y z
+          else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k
+               (insert (tail str) l)
+               m n o p q r s t u v w x y z
+     | head str == 'm' =
+          if m == Empty then TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l
+               (insert (tail str) (TrieNode 'm' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
+               n o p q r s t u v w x y z
+          else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l
+               (insert (tail str) m)
+               n o p q r s t u v w x y z
+     | head str == 'n' =
+          if n == Empty then TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m
+               (insert (tail str) (TrieNode 'n' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
+               o p q r s t u v w x y z
+          else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m
+               (insert (tail str) n)
+               o p q r s t u v w x y z
+     | head str == 'o' =
+          if o == Empty then TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n
+               (insert (tail str) (TrieNode 'o' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
+               p q r s t u v w x y z
+          else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n
+               (insert (tail str) o)
+               p q r s t u v w x y z
+     | head str == 'p' =
+          if p == Empty then TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o
+               (insert (tail str) (TrieNode 'p' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
+               q r s t u v w x y z
+          else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o
+               (insert (tail str) p)
+               q r s t u v w x y z
+     | head str == 'q' =
+          if q == Empty then TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o p
+               (insert (tail str) (TrieNode 'q' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
+               r s t u v w x y z
+          else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o p
+               (insert (tail str) q)
+               r s t u v w x y z
+     | head str == 'r' =
+          if r == Empty then TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o p q
+               (insert (tail str) (TrieNode 'r' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
+               s t u v w x y z
+          else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o p q
+               (insert (tail str) r)
+               s t u v w x y z
+     | head str == 's' =
+          if s == Empty then TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o p q r
+               (insert (tail str) (TrieNode 's' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
+               t u v w x y z
+          else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o p q r
+               (insert (tail str) s)
+               t u v w x y z
+     | head str == 't' =
+          if t == Empty then TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o p q r s
+               (insert (tail str) (TrieNode 't' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
+               u v w x y z
+          else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o p q r s
+               (insert (tail str) t)
+               u v w x y z
+     | head str == 'u' =
+          if u == Empty then TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o p q r s t
+               (insert (tail str) (TrieNode 'u' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
+               v w x y z
+          else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o p q r s t
+               (insert (tail str) u)
+               v w x y z
+     | head str == 'v' =
+          if v == Empty then TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o p q r s t u
+               (insert (tail str) (TrieNode 'v' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
+               w x y z
+          else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o p q r s t u
+               (insert (tail str) v)
+               w x y z
+     | head str == 'w' =
+          if w == Empty then TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o p q r s t u v
+               (insert (tail str) (TrieNode 'w' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
+               x y z
+          else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o p q r s t u v
+               (insert (tail str) w)
+               x y z
+     | head str == 'x' =
+          if x == Empty then TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o p q r s t u v w
+               (insert (tail str) (TrieNode 'x' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
+               y z
+          else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o p q r s t u v w
+               (insert (tail str) x)
+               y z
+     | head str == 'y' =
+          if y == Empty then TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o p q r s t u v w x
+               (insert (tail str) (TrieNode 'y' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
+               z
+          else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o p q r s t u v w x
+               (insert (tail str) y)
+               z
+     | head str == 'z' =
+          if z == Empty then TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o p q r s t u v w x y
+               (insert (tail str) (TrieNode 'z' (null (tail str)) Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty))
+          else TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o p q r s t u v w x y
+               (insert (tail str) z)
+
+loadDict [] d = d
+loadDict lst d =
+     insert (last lst) (loadDict (init lst) d)
 
 
-
--- tolist without append (++), using accumulators
--- tolista :: DicTrie v w -> [(v, w)]
--- tolista lst =
---     tolist2 lst []
-
--- tolist2 tree lst   returns the the list of elements of tree followed by the elements of lst
--- tolist2 :: BSTree k v -> [(k,v)] -> [(k,v)]
--- tolist2 Empty acc = acc
--- tolist2 (Node val word lt rt) acc =
---      tolist2 lt  ((val, word) : tolist2 rt acc)
-
---- Example to try
--- atree =  Node 5 "alive" (Node 2 "be" Empty (Node 4 "fun" Empty Empty)) (Node 8 "food" Empty  Empty)
--- tolista atree
-
-
--- atree =  Node 5 "alive" (Node 2 "be" Empty (Node 4 "fun" Empty Empty)) (Node 8 "food" Empty  Empty)
--- tolista (insert 6 "six" atree)
-
--- what if we wanted to return the old value of key as well as the tree?
--- what if there wasn't an old value; what should be returned? (It has to be of the correct type!)
+readcsv =
+  do
+    file <- readFile "ShortDictionary.txt"
+    let ws = words file
+    let dictionary = loadDict ws dict
+    return (tolist dictionary)
