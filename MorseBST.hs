@@ -11,6 +11,7 @@ module MorseBST where
 data MorseBST v = Empty
                 | Node v (MorseBST v) (MorseBST v)
 
+morseTree :: MorseBST Char
 morseTree = Node ' '
      (Node 'e'
           (Node 'i'

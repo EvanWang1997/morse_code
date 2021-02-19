@@ -63,10 +63,11 @@ tesTrie = TrieNode ' ' False
      (TrieNode '9' True Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty)
      (TrieNode 'a' True  Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty)
      (TrieNode 'b' False Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty)
-     (TrieNode 'c' False (TrieNode 'a' False Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty
+     (TrieNode 'c' False Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty
+          (TrieNode 'a' False Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty
                (TrieNode 't' True Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty)
-               Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty)
-          Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty)
+               Empty Empty Empty Empty Empty Empty)
+          Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty)
      (TrieNode 'd' False Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty)
      (TrieNode 'e' False Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty)
      (TrieNode 'f' False Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty)
@@ -366,10 +367,51 @@ loadDict [] d = d
 loadDict lst d =
      insert (last lst) (loadDict (init lst) d)
 
+-- isWord [] d = False
+isWord str (TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 a b c d e f g h i j k l m n o p q r s t u v w x y z)
+     | null str = word
+     | head str == '0' = if num0 == Empty then False else isWord (tail str) num0
+     | head str == '1' = if num1 == Empty then False else isWord (tail str) num1
+     | head str == '2' = if num2 == Empty then False else isWord (tail str) num2
+     | head str == '3' = if num3 == Empty then False else isWord (tail str) num3
+     | head str == '4' = if num4 == Empty then False else isWord (tail str) num4
+     | head str == '5' = if num5 == Empty then False else isWord (tail str) num5
+     | head str == '6' = if num6 == Empty then False else isWord (tail str) num6
+     | head str == '7' = if num7 == Empty then False else isWord (tail str) num7
+     | head str == '8' = if num8 == Empty then False else isWord (tail str) num8
+     | head str == '9' = if num9 == Empty then False else isWord (tail str) num9
+     | head str == 'a' = if a == Empty then False else isWord (tail str) a
+     | head str == 'b' = if b == Empty then False else isWord (tail str) b
+     | head str == 'c' = if c == Empty then False else isWord (tail str) c
+     | head str == 'd' = if d == Empty then False else isWord (tail str) d
+     | head str == 'e' = if e == Empty then False else isWord (tail str) e
+     | head str == 'f' = if f == Empty then False else isWord (tail str) f
+     | head str == 'g' = if g == Empty then False else isWord (tail str) g
+     | head str == 'h' = if h == Empty then False else isWord (tail str) h
+     | head str == 'i' = if i == Empty then False else isWord (tail str) i
+     | head str == 'j' = if j == Empty then False else isWord (tail str) j
+     | head str == 'k' = if k == Empty then False else isWord (tail str) k
+     | head str == 'l' = if l == Empty then False else isWord (tail str) l
+     | head str == 'm' = if m == Empty then False else isWord (tail str) m
+     | head str == 'n' = if n == Empty then False else isWord (tail str) n
+     | head str == 'o' = if o == Empty then False else isWord (tail str) o
+     | head str == 'p' = if p == Empty then False else isWord (tail str) p
+     | head str == 'q' = if q == Empty then False else isWord (tail str) q
+     | head str == 'r' = if r == Empty then False else isWord (tail str) r
+     | head str == 's' = if s == Empty then False else isWord (tail str) s
+     | head str == 't' = if t == Empty then False else isWord (tail str) t
+     | head str == 'u' = if u == Empty then False else isWord (tail str) u
+     | head str == 'v' = if v == Empty then False else isWord (tail str) v
+     | head str == 'w' = if w == Empty then False else isWord (tail str) w
+     | head str == 'x' = if x == Empty then False else isWord (tail str) x
+     | head str == 'y' = if y == Empty then False else isWord (tail str) y
+     | head str == 'z' = if z == Empty then False else isWord (tail str) z
+     | otherwise = False
+
 
 readcsv =
   do
     file <- readFile "ShortDictionary.txt"
     let ws = words file
     let dictionary = loadDict ws dict
-    return (tolist dictionary)
+    return (isWord "word" dictionary)
