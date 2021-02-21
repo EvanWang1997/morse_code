@@ -19,7 +19,6 @@ fileToEng s =
         file <- readFile "ShortDictionary.txt"
         let ws = words file
         let dictionary = loadDict ws dict
-        return (isWord "word" dictionary)
 
         morse <- textToString s
         let 
@@ -114,7 +113,7 @@ allFirstWords ret [] dic = []
 allFirstWords ret (h:t) dic
     | a && b = (allFirstWords c d dic) ++ [ret]
     | b = (allFirstWords c d dic)
-    | otherwise = []
+    | otherwise = [ret]
     where
         a = isWord ret dic
         b = canAddLetters ret (h:t) dic
@@ -139,6 +138,7 @@ nextWord ret (h:t) dic
 
 -- Helper Function: Checks if additional letters can kept be adding to make another words
 canAddLetters :: Eq v => String -> String -> DicTrie v Bool -> Bool
+canAddLetters _ [] _ = False
 canAddLetters ret (h:t) dic
     | elem '.' ret = False
     | isWord (ret ++ [h]) dic = True
