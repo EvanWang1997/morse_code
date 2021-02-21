@@ -414,4 +414,4 @@ readcsv =
     file <- readFile "ShortDictionary.txt"
     let ws = words file
     let dictionary = loadDict ws dict
-    return (isWord "word" dictionary)
+    return (isWord "aer" dictionary)
