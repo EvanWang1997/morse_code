@@ -16,7 +16,7 @@ import System.IO
 fileToEng :: String -> IO [String]
 fileToEng s =
     do 
-        file <- readFile "ShortDictionary.txt"
+        file <- readFile "TestDictionary.txt"
         let ws = words file
         let dictionary = loadDict ws dict
 
@@ -109,16 +109,15 @@ parseSent (h:t) dic =
 
 -- Helper Function finds all potential words at the front of the current string
 allFirstWords :: Eq v => String -> String -> DicTrie v Bool -> [String]
-allFirstWords ret [] dic = []
 allFirstWords ret (h:t) dic
-    | a && b = (allFirstWords c d dic) ++ [ret]
-    | b = (allFirstWords c d dic)
+    | ret == [] = (allFirstWords c (h:t) dic)
+    | a && b = (allFirstWords c (h:t) dic) ++ [ret]
+    -- | b = (allFirstWords c d dic)
     | otherwise = [ret]
     where
         a = isWord ret dic
-        b = canAddLetters ret (h:t) dic
-        c = nextWord ret (h:t) dic
-        d = removeNextLetters c (h:t)
+        b = canAddLetters ret (removeNextLetters ret (h:t)) dic
+        c = nextWord ret (removeNextLetters ret (h:t)) dic
 
 -- Helper Function: Given a word, and a list of different strings, appends the word along with a space in between to every string in a given list
 appendFirst :: String -> [String] -> [String]
