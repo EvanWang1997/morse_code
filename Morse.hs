@@ -16,7 +16,7 @@ import System.IO
 fileToEng :: String -> IO [String]
 fileToEng s =
     do 
-        file <- readFile "TestDictionary.txt"
+        file <- readFile "ShortDictionary.txt"
         let ws = words file
         let dictionary = loadDict ws dict
 
@@ -112,7 +112,6 @@ allFirstWords :: Eq v => String -> String -> DicTrie v Bool -> [String]
 allFirstWords ret (h:t) dic
     | ret == [] = (allFirstWords c (h:t) dic)
     | a && b = (allFirstWords c (h:t) dic) ++ [ret]
-    -- | b = (allFirstWords c d dic)
     | otherwise = [ret]
     where
         a = isWord ret dic
