@@ -112,7 +112,8 @@ allFirstWords :: Eq v => String -> String -> DicTrie v Bool -> [String]
 allFirstWords ret (h:t) dic
     | ret == [] = (allFirstWords c (h:t) dic)
     | a && b = (allFirstWords c (h:t) dic) ++ [ret]
-    | otherwise = [ret]
+    | a = [ret]
+    | otherwise = []
     where
         a = isWord ret dic
         b = canAddLetters ret (removeNextLetters ret (h:t)) dic
