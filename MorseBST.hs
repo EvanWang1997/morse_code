@@ -83,33 +83,3 @@ tolist :: MorseBST v -> [v]
 tolist Empty = []
 tolist (Node val lt rt) =
      tolist lt ++ (val : tolist rt)
-
---- Example to try
--- atree =  Node 5 "alive" (Node 2 "be" Empty (Node 4 "fun" Empty Empty)) (Node 8 "food" Empty  Empty)
--- tolist atree
-
-
-
-
-
--- tolist without append (++), using accumulators
-tolista :: MorseBST v -> [v]
-tolista lst =
-    tolist2 lst []
-
--- tolist2 tree lst   returns the the list of elements of tree followed by the elements of lst
--- tolist2 :: BSTree k v -> [(k,v)] -> [(k,v)]
-tolist2 Empty acc = acc
-tolist2 (Node val lt rt) acc =
-     tolist2 lt  (val : tolist2 rt acc)
-
---- Example to try
--- atree =  Node 5 "alive" (Node 2 "be" Empty (Node 4 "fun" Empty Empty)) (Node 8 "food" Empty  Empty)
--- tolista atree
-
-
--- atree =  Node 5 "alive" (Node 2 "be" Empty (Node 4 "fun" Empty Empty)) (Node 8 "food" Empty  Empty)
--- tolista (insert 6 "six" atree)
-
--- what if we wanted to return the old value of key as well as the tree?
--- what if there wasn't an old value; what should be returned? (It has to be of the correct type!)
