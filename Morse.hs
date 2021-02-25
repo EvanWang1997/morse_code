@@ -26,6 +26,19 @@ fileToEng s =
             unparsed = reverse (messageTrim (reverse eng))
             separated = parseSent unparsed dictionary
         return separated 
+
+textToEng :: String -> IO [String]
+textToEng s =
+    do
+        file <- readFile "ShortDictionary.txt"
+        let ws = words file
+        let dictionary = loadDict ws dict
+
+        let 
+            eng = morseToMessage s
+            uparsed = reverse (messageTrim (reverse eng))
+            separated = parseSent uparsed dictionary
+        return separated
             
 
 -- FUNCTIONS FOR CONVERTING MORSE STRING FILE TO AN ENGLISH MESSAGE
