@@ -1,7 +1,6 @@
-
 import Data.Text (Text)
 import MorseBST
-import DicTrie
+import Trie
 
 
 -- Takes in the file specified from the user, returns the contents of the file
@@ -18,27 +17,27 @@ fileToEng s =
     do 
         file <- readFile "ShortDictionary.txt"
         let ws = words file
-        let dictionary = loadDict ws dict
+        let dictionary = loadDict ws Trie.Empty
 
         morse <- textToString s
         let 
             eng = morseToMessage morse
             unparsed = reverse (messageTrim (reverse eng))
             separated = parseSent unparsed dictionary
-        return separated 
+        return (filter validSentence separated) 
 
 textToEng :: String -> IO [String]
 textToEng s =
     do
         file <- readFile "ShortDictionary.txt"
         let ws = words file
-        let dictionary = loadDict ws dict
+        let dictionary = loadDict ws Trie.Empty
 
         let 
             eng = morseToMessage s
             uparsed = reverse (messageTrim (reverse eng))
             separated = parseSent uparsed dictionary
-        return separated
+        return (filter validSentence separated)
             
 
 -- FUNCTIONS FOR CONVERTING MORSE STRING FILE TO AN ENGLISH MESSAGE
@@ -112,14 +111,14 @@ findPattern str1 str2
 -- FUNCTIONS FOR PARSING A SENTENCE INTO RECOGNIZABLE WORDS, AND PRESENTS ALL POTENTIAL MESSAGES
 
 -- Helper Function: Breaks down a sentence into potentially logical sentences, and returns a list of strings
-parseSent :: Eq v => String -> DicTrie v Bool -> [String]
+parseSent :: String -> DicTrie Char Bool -> [String]
 parseSent [] _ = [[]]
 parseSent (h:t) dic = 
     foldr (\x lst -> (lst ++ (appendFirst x (parseSent (removeNextLetters x (h:t)) dic)))) [] (allFirstWords [] (h:t) dic)
               
 -- TODO: ISSUE WITH RECOGNIZING PERIODS HAS BEEN INTRODUCED
 -- Helper Function finds all potential words at the front of the current string
-allFirstWords :: Eq v => String -> String -> DicTrie v Bool -> [String]
+allFirstWords :: [Char] -> [Char] -> DicTrie Char Bool -> [[Char]]
 allFirstWords ret (h:t) dic
     | ret == [] = (allFirstWords c (h:t) dic)
     | a && b = (allFirstWords c (h:t) dic) ++ [ret]
@@ -138,7 +137,7 @@ appendFirst s lst =
 
 
 -- Helper Function: Takes an original string (can be an empty array), a string, and returns the first matching word in that string
-nextWord :: Eq v => String -> String -> DicTrie v Bool -> String
+nextWord :: [Char] -> [Char] -> DicTrie Char Bool -> [Char]
 nextWord ret [] dic = ret
 nextWord ret (h:t) dic
     | h == '.' = (ret ++ ". ")
@@ -146,7 +145,7 @@ nextWord ret (h:t) dic
     | otherwise = nextWord (ret ++ [h]) t dic
 
 -- Helper Function: Takes a word, the diciontary, and checks if additional letters can be added to make another word
-canAddLetters :: Eq v => String -> String -> DicTrie v Bool -> Bool
+canAddLetters :: [Char] -> [Char] -> DicTrie Char Bool -> Bool
 canAddLetters _ [] _ = False
 canAddLetters ret (h:t) dic
     | elem '.' ret = False
@@ -158,7 +157,10 @@ removeNextLetters :: String -> String -> String
 removeNextLetters s1 s2 = 
     drop (length s1) s2
 
-
+-- Helper Function: Checks translated sentence for mistakes
+validSentence :: [Char] -> Bool
+validSentence [] = False
+validSentence lst = last (words lst) == "."
 
 
 
