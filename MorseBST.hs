@@ -3,6 +3,8 @@
 
 module MorseBST where
 
+import Data.Char
+
 -- To run it, try:
 -- ghci
 -- :load MorseBST
@@ -45,10 +47,34 @@ morseTree = Node ' '
                     (Node ' ' (Node '9' Empty Empty) (Node '0' Empty Empty)))))
 
 
+-- Function to covert a morse string into a alphanumeric character
 morseToEng str (Node v dit dah)
      | str == [] = v
      | (head str) == '.' = morseToEng (tail str) dit
      | (head str) == '-' = morseToEng (tail str) dah
+
+-- Helper Function to find if an alphanumeric character is in the left or right branch
+inBranch char Empty  = False
+inBranch char (Node v dit dah) =
+     char == v || inBranch char dit || inBranch char dah 
+
+-- Helper function for converting strings to lower case equivalents
+lowercase :: String -> String
+lowercase [] = []
+lowercase s =
+    map toLower s
+
+-- Function to convert an english sentence into a morse message of this decoding format
+engToMorse str =
+     foldr (\x lst -> ((charToMorse [] x morseTree) ++ "/") ++ lst) [] (lowercase str)
+
+-- Helper function to convert a single character to a morse character
+charToMorse _ '.' _ = "|"
+charToMorse _ ' ' _ = ""
+charToMorse mstr char (Node v dit dah) 
+     | inBranch char dit = charToMorse (mstr ++ ".") char dit
+     | inBranch char dah = charToMorse (mstr ++ "-") char dah
+     | otherwise = mstr
 
 -- morseToEng "..." morseTree -> 's'
 

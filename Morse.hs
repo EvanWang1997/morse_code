@@ -28,8 +28,6 @@ fileToEng s =
         return separated 
             
 
-
-
 -- FUNCTIONS FOR CONVERTING MORSE STRING FILE TO AN ENGLISH MESSAGE
 
 -- Takes in a file specified by the user, returns the english translation of the morse code
@@ -106,14 +104,13 @@ parseSent [] _ = [[]]
 parseSent (h:t) dic = 
     foldr (\x lst -> (lst ++ (appendFirst x (parseSent (removeNextLetters x (h:t)) dic)))) [] (allFirstWords [] (h:t) dic)
               
-
+-- TODO: ISSUE WITH RECOGNIZING PERIODS HAS BEEN INTRODUCED
 -- Helper Function finds all potential words at the front of the current string
 allFirstWords :: Eq v => String -> String -> DicTrie v Bool -> [String]
 allFirstWords ret (h:t) dic
     | ret == [] = (allFirstWords c (h:t) dic)
     | a && b = (allFirstWords c (h:t) dic) ++ [ret]
-    | a = [ret]
-    | otherwise = []
+    | otherwise = [ret]
     where
         a = isWord ret dic
         b = canAddLetters ret (removeNextLetters ret (h:t)) dic
@@ -135,7 +132,7 @@ nextWord ret (h:t) dic
     | isWord (ret ++ [h]) dic = (ret ++ [h])
     | otherwise = nextWord (ret ++ [h]) t dic
 
--- Helper Function: Checks if additional letters can kept be adding to make another words
+-- Helper Function: Takes a word, the diciontary, and checks if additional letters can be added to make another word
 canAddLetters :: Eq v => String -> String -> DicTrie v Bool -> Bool
 canAddLetters _ [] _ = False
 canAddLetters ret (h:t) dic
@@ -143,7 +140,7 @@ canAddLetters ret (h:t) dic
     | isWord (ret ++ [h]) dic = True
     | otherwise = canAddLetters (ret ++ [h]) t dic
 
--- Helper Function: removes the letters corresponding to the length in s1 from s2
+-- Helper Function: takes a string, and another string, and removes a length of characters from the first string from the second string
 removeNextLetters :: String -> String -> String
 removeNextLetters s1 s2 = 
     drop (length s1) s2
