@@ -6,30 +6,26 @@
 
 import Morse
 
+
 start :: IO [String]
-Start = 
+start = 
     do
-        -- putStrLn "Welcome to morse translator, please select from the from the following options:"
-        -- putStrLn "A: convert english to morse"
-        -- putStrLn "B: convert morse to english, and trim the message"
-        -- putStrLn "C: convert a text file's morse into english"
+        putStrLn "Welcome to morse translator, please select from the from the following options:"
+        putStrLn "A: convert english to morse"
+        putStrLn "B: convert morse to english, and trim the message"
+        putStrLn "C: convert a text file's morse into english"
         ans <- getLine
+
         if ans == "A"
-        then final <- ["hello"] 
+        then return ["hello"]
         else if ans == "B"
-        then final <- ["goodbye"]
+        then return ["goodbye"]
         else if ans == "C"
-        then final <- ["working"]
-        else final <- ["not quite"]
+        then return ["working"]
+        else return ["nothing"]
 
-    return final
 
-    --   if (ans == "A")
-        -- then do
-        --    putStrLn "Think of an entity"
-        --    newtree <- askabout tree
-        --    play newtree
-        -- else if (ans == "B")
+
 
 
 
