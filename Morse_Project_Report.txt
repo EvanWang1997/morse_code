@@ -1,4 +1,20 @@
+Morse Code Decrypt
 
+To implement a program that processes Morse Code as intended, we broke down the problem into small steps that are easier to implement:
+- A data structure that recognizes Morse code sequences and alphanumeric equivalents
+- Given a repeating sstring of Morse code, convert it to alphanumeric equivalent and extract one occurrence of the message
+- A data structure that stores words of a dictionary and can determine if a sequence of numbers and letters form a proper English word
+- Given the extracted message, return all combinations of words that can be formed
+
+Morse data structure
+It made sense for us to implement a BST to store the Morse code translation since Morse consists solely of '.' and '-' commonly referred to as "dit" and "dah".
+Therefore for a Char v, a MorseBST Node is either Empty or in the form Node v (MorseBST v) (MorseBST v). For a sequence '.-', we would start at the root and travel to the dit branch and then the dah branch to return the corresponding letter 'a'.
+
+                                                                root
+                                                         (dit) /    \ (dah)
+                                                             'E'    'T'
+                                                            /  |    |  \
+                                                          'I' 'A'  'N' 'M'
 
 Morse to  English
 - Agree on convention for writing morse code
@@ -7,6 +23,12 @@ Morse to  English
 - Convert all morse characters into english letters
 - Locate end of array, assume end of array corresponds to end of a messsage
 - Backtrack from end of array until matching length of characters is found, return one chunk of letters
+
+Dictionary data structure
+Our final version of the dictionary data structure is a Trie with a branch for siblings and a second for children. A Trie node is either Empty or in the form
+TrieNode v w (DicTrie v w) (DicTrie v w) where v is a Char and w is a Bool that indicates the end of a word. To store the dictionary, we first found a txt file of most used English words and parsed it as a list of strings to insert each word.
+
+                                                              
 
 Word parsing
 - Begin by importing dictionary into navigable tree data structure 
