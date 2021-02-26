@@ -1,5 +1,3 @@
-module Morse where
-
 import Data.Text (Text)
 import MorseBST
 import Trie
@@ -26,10 +24,8 @@ fileToEng s =
             eng = morseToMessage morse
             unparsed = reverse (messageTrim (reverse eng))
             separated = parseSent unparsed dictionary
-        return (filter validSentence separated) 
+        return (filter (`validSentence` dictionary) separated) 
 
--- Main function for taking a morse string, and converting it to potential english strings as per a specified
--- dictionary. Must take in a comprehensive morse string interperable by this program
 textToEng :: String -> IO [String]
 textToEng s =
     do
@@ -41,7 +37,7 @@ textToEng s =
             eng = morseToMessage s
             uparsed = reverse (messageTrim (reverse eng))
             separated = parseSent uparsed dictionary
-        return (filter validSentence separated)
+        return (filter (`validSentence` dictionary) separated)
             
 
 -- FUNCTIONS FOR CONVERTING MORSE STRING FILE TO AN ENGLISH MESSAGE
@@ -162,12 +158,22 @@ removeNextLetters s1 s2 =
     drop (length s1) s2
 
 -- Helper Function: Checks translated sentence for mistakes
-validSentence :: [Char] -> Bool
-validSentence [] = False
-validSentence lst = last (words lst) == "."
+validSentence :: [Char] -> DicTrie Char Bool -> Bool
+validSentence [] dic = False
+validSentence _ Trie.Empty = False
+validSentence lst dic
+    | last (words lst) == "." = True
+    | last (words lst) `isWord` dic = True
+    | otherwise = False
 
 
 
+test =
+    do
+        file <- readFile "Dictionary Adjusted.txt"
+        let ws = words file
+        let dictionary = loadDict ws Trie.Empty
 
+        return (isWord "potato" dictionary)
 
     
