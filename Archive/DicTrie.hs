@@ -63,7 +63,7 @@ tesTrie = TrieNode ' ' False
      (TrieNode '9' True Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty)
      (TrieNode 'a' True  Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty)
      (TrieNode 'b' False Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty)
-     (TrieNode 'c' False Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty
+     (TrieNode 'c' True Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty
           (TrieNode 'a' False Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty
                (TrieNode 't' True Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty Empty)
                Empty Empty Empty Empty Empty Empty)
@@ -407,11 +407,3 @@ isWord str (TrieNode val word num0 num1 num2 num3 num4 num5 num6 num7 num8 num9 
      | head str == 'y' = if y == Empty then False else isWord (tail str) y
      | head str == 'z' = if z == Empty then False else isWord (tail str) z
      | otherwise = False
-
-
-readcsv =
-  do
-    file <- readFile "ShortDictionary.txt"
-    let ws = words file
-    let dictionary = loadDict ws dict
-    return (isWord "aer" dictionary)
