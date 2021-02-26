@@ -33,14 +33,14 @@ Our final version of the dictionary data structure is a Trie with a branch for s
 TrieNode v w (DicTrie v w) (DicTrie v w) where v is a Char and w is a Bool that indicates the end of a word. To store the dictionary, we first found a txt file
 of most used English words and parsed it as a list of strings to insert each word.
 
-                                                     (sibling)
-                                                  'b' ------- 'd'
-                                           (child) |           |
-                                                  'a' - 'o'   'a'
-                                                   |     |     |
-                                                  'b'   'x'   'd'
-                                                   |
-                                                  'y'
+                                                               (sibling)
+                                                            'b' ------- 'd'
+                                                     (child) |           |
+                                                            'a' - 'o'   'a'
+                                                             |     |     |
+                                                            'b'   'x'   'd'
+                                                             |
+                                                            'y'
 
 Example based on https://en.wikipedia.org/wiki/Trie
 
@@ -60,6 +60,11 @@ in the result. due to time constraints, we decided to apply a filter to the resu
 current state of the program achieves what we wanted but travels through the result one extra time due to this issue.
 
 Discussion
+Functional programming was appropirate for this project, considering how recursion simplified tree operations. We built more knowledge on tree data structures
+such as Tries and Ternary Search Trees, especially the different implementations of Tries, such as using Maps or list of Triples. It was also interesting to
+see how different implementations of our data structure would affect performance; our final implementation of a dictionary is able to store over 200k words,
+albeit given some time, whereas our first implementation would consume all memory available before even finishing.
+
 Throughout this project, laying a framework of modularity was obvious, but crucial to having the overall program perform exactly as intended. Steady 
 creation and debugging of the various functionality, such as converting messages both ways, trimming down messages into a single length, and breaking
 sentences into correct words and returning possible messages. Overall, our program has functionality that can be extended into translations for
