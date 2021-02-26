@@ -61,7 +61,9 @@ current state of the program achieves what we wanted but travels through the res
 
 Discussion
 Throughout this project, laying a framework of modularity was obvious, but crucial to having the overall program perform exactly as intended. Steady 
-creation and debugging of the various functionarlity, such as converting messages both ways, trimming down messages into a single form, and 
+creation and debugging of the various functionarlity, such as converting messages both ways, trimming down messages into a single length, and breaking
+sentences into correct words and returning possible messages. Overall, our program has functionality that can be extended into translations for
+other languages, and simple encryption programs, through the various functions that have been implemented.
 
 
 

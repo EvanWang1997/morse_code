@@ -1,3 +1,5 @@
+module Morse where
+
 import Data.Text (Text)
 import MorseBST
 import Trie
@@ -166,17 +168,3 @@ validSentence lst dic
     | last (words lst) `isWord` dic = True
     | otherwise = False
 
-
-<<<<<<< HEAD
-=======
-
-test =
-    do
-        file <- readFile "Dictionary Adjusted.txt"
-        let ws = words file
-        let dictionary = loadDict ws Trie.Empty
-
-        return (isWord "potato" dictionary)
-
-    
->>>>>>> 677073433e75549ddce66c27d60ec183afa970dd
