@@ -7,6 +7,7 @@ Morse code for CPSC 312
 - fileToEng: converts a text file in morse to an english method
 - messageTrim: takes a repeating message, and returns a single length of it
 - parseSent: breaks down an unparsed sentence into known words through a dictioary tree
+- textToEng: takes a morse string, and converts to potential english messages
 
 **HELPER FUNCTIONS:**
 - textToString: returns contents of file in a IO string
