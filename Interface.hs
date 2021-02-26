@@ -5,8 +5,9 @@
 -- Converting a morse message, into a list of possible english messages
 
 import Morse
+import MorseBST
 
-
+-- Main function for starting the interface, and allows user to access options for morse translation
 start :: IO [String]
 start = 
     do
@@ -17,17 +18,34 @@ start =
         ans <- getLine
 
         if ans == "A"
-        then return ["hello"]
+        then askForMorse
         else if ans == "B"
-        then return ["goodbye"]
+        then askForEng
         else if ans == "C"
-        then return ["working"]
-        else return ["nothing"]
+        then askForFile
+        else return ["Come back when you have something you actually want translated"]
+
+-- Helper function for converting an inputted string 
+askForMorse :: IO [String]
+askForMorse = 
+    do
+        putStrLn "Please enter a string for conversion to morse, alphanumeric, spaces, and periods are accepted"
+        ans <- getLine
+        return [(engToMorse ans)]
+
+askForEng :: IO [String]
+askForEng = 
+    do
+        putStrLn "Please enter the morse string for conversion, it must following the convention of this decoder"
+        ans <- getLine
+        (textToEng ans)
 
 
-
-
-
-
+askForFile :: IO [String]
+askForFile =
+    do
+        putStrLn "Please enter a text file that you want translated from morse to english"
+        ans <- getLine 
+        fileToEng ans
 
 

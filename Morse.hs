@@ -28,6 +28,8 @@ fileToEng s =
             separated = parseSent unparsed dictionary
         return (filter validSentence separated) 
 
+-- Main function for taking a morse string, and converting it to potential english strings as per a specified
+-- dictionary. Must take in a comprehensive morse string interperable by this program
 textToEng :: String -> IO [String]
 textToEng s =
     do
