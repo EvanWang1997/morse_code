@@ -25,7 +25,7 @@ start =
         then askForFile
         else return ["Come back when you have something you actually want translated"]
 
--- Helper function for converting an inputted string 
+-- Helper function for converting an inputted string to its morse equivalents
 askForMorse :: IO [String]
 askForMorse = 
     do
@@ -33,6 +33,7 @@ askForMorse =
         ans <- getLine
         return [(engToMorse ans)]
 
+-- Helper function for converting
 askForEng :: IO [String]
 askForEng = 
     do

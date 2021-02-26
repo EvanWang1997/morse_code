@@ -167,7 +167,3 @@ validSentence [] = False
 validSentence lst = last (words lst) == "."
 
 
-
-
-
-    
