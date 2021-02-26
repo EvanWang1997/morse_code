@@ -1,3 +1,5 @@
+module Morse where
+
 import Data.Text (Text)
 import MorseBST
 import Trie
