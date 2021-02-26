@@ -60,7 +60,7 @@ in the result. due to time constraints, we decided to apply a filter to the resu
 current state of the program achieves what we wanted but travels through the result one extra time due to this issue.
 
 Discussion
-Functional programming was appropirate for this project, considering how recursion simplified tree operations. We built more knowledge on tree data structures
+Functional programming was appropriate for this project, considering how recursion simplified tree operations. We built more knowledge on tree data structures
 such as Tries and Ternary Search Trees, especially the different implementations of Tries, such as using Maps or list of Triples. It was also interesting to
 see how different implementations of our data structure would affect performance; our final implementation of a dictionary is able to store over 200k words,
 albeit given some time, whereas our first implementation would consume all memory available before even finishing.
