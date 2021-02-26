@@ -16,6 +16,8 @@ Therefore for a Char v, a MorseBST Node is either Empty or in the form Node v (M
                                                             /  |    |  \
                                                           'I' 'A'  'N' 'M'
 
+Example based on https://en.wikipedia.org/wiki/Morse_code
+
 Morse to  English
 We followed the steps below to proceed throught the Morse to English conversion:
 - Agree on convention for writing morse code
