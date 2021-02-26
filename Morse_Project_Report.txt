@@ -60,7 +60,8 @@ in the result. due to time constraints, we decided to apply a filter to the resu
 current state of the program achieves what we wanted but travels through the result one extra time due to this issue.
 
 Discussion
-
+Throughout this project, laying a framework of modularity was obvious, but crucial to having the overall program perform exactly as intended. Steady 
+creation and debugging of the various functionarlity, such as converting messages both ways, trimming down messages into a single form, and 
 
 
 
