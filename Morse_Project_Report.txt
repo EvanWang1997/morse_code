@@ -8,7 +8,8 @@ To implement a program that processes Morse Code as intended, we broke down the 
 
 Morse data structure
 It made sense for us to implement a BST to store the Morse code translation since Morse consists solely of '.' and '-' commonly referred to as "dit" and "dah".
-Therefore for a Char v, a MorseBST Node is either Empty or in the form Node v (MorseBST v) (MorseBST v). For a sequence '.-', we would start at the root and travel to the dit branch and then the dah branch to return the corresponding letter 'a'.
+Therefore for a Char v, a MorseBST Node is either Empty or in the form Node v (MorseBST v) (MorseBST v). For a sequence '.-', we would start at the root and
+travel to the dit branch and then the dah branch to return the corresponding letter 'a'.
 
                                                                 root
                                                          (dit) /    \ (dah)
@@ -29,7 +30,8 @@ We followed the steps below to proceed throught the Morse to English conversion:
 
 Dictionary data structure
 Our final version of the dictionary data structure is a Trie with a branch for siblings and a second for children. A Trie node is either Empty or in the form
-TrieNode v w (DicTrie v w) (DicTrie v w) where v is a Char and w is a Bool that indicates the end of a word. To store the dictionary, we first found a txt file of most used English words and parsed it as a list of strings to insert each word.
+TrieNode v w (DicTrie v w) (DicTrie v w) where v is a Char and w is a Bool that indicates the end of a word. To store the dictionary, we first found a txt file
+of most used English words and parsed it as a list of strings to insert each word.
 
                                                      (sibling)
                                                   'b' ------- 'd'
@@ -51,7 +53,11 @@ We followed the steps below to implement the word parsing:
 - Writes possible sentences with words that were accepted by the tree
 
 Results and Analysis
-Both data structures are able to search in O(m) where m is the length of the string to process. The first implementation of the dictionary data structure consisted of a node with 26 branches for each letter, however, we quickly noticed that a lot of Empty nodes are created when storing the dictionary which expends a lot of memory exponentially. We also encountered issues in the word parsing/breaking where leftover letters that donot form a word were included in the result. due to time constraints, we decided to apply a filter to the result considering the time we already invested in resolving the issue. The current state of the program achieves what we wanted but travels through the result one extra time due to this issue.
+Both data structures are able to search in O(m) where m is the length of the string to process. The first implementation of the dictionary data structure
+consisted of a node with 26 branches for each letter, however, we quickly noticed that a lot of Empty nodes are created when storing the dictionary which
+expends a lot of memory exponentially. We also encountered issues in the word parsing/breaking where leftover letters that donot form a word were included
+in the result. due to time constraints, we decided to apply a filter to the result considering the time we already invested in resolving the issue. The
+current state of the program achieves what we wanted but travels through the result one extra time due to this issue.
 
 Discussion
 
